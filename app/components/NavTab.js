@@ -3,17 +3,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import HomeScreen from "../screens/HomeView.js";
-import LoginScreen from "../screens/LoginView.js";
-import AccountScreen from "../screens/AccountView";
-import CalendarScreen from "../screens/CalendarView";
-import ClubInfoScreen from "../screens/ClubInfoView";
-import LocationsScreen from "../screens/MapView";
-import MessageScreen from "../screens/MessagingView";
-import SearchScreen from "../screens/SearchView";
-import SettingsScreen from "../screens/SettingsView";
-
-const Tab = createBottomTabNavigator();
+import AccountStackScreen from "./stacks/AccountStack.js";
+import SearchStackScreen from "./stacks/SearchStack.js";
+import HomeScreen from "../screens/tabbar-screens/HomeView.js";
+import MessageScreen from "../screens/tabbar-screens/MessagingView";
+import EventsStackScreen from "./stacks/EventsStack";
 
 const AppTheme = {
   dark: false,
@@ -27,6 +21,8 @@ const AppTheme = {
   },
 };
 
+const Tab = createBottomTabNavigator();
+
 function NavTab() {
   return (
     <NavigationContainer theme={AppTheme}>
@@ -35,30 +31,38 @@ function NavTab() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "Home") {
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-            } else if (route.name === "Settings") {
-              iconName = focused ? "ios-list-box" : "ios-list";
+            switch (route.name) {
+              case "Home":
+                iconName = focused ? "home" : "home-outline";
+                break;
+              case "User":
+                iconName = focused ? "person" : "person-outline";
+                break;
+              case "Search":
+                iconName = focused ? "search" : "search-outline";
+                break;
+              case "Messaging":
+                iconName = focused ? "chatbubbles" : "chatbubbles-outline";
+                break;
+              case "Events":
+                iconName = focused ? "calendar" : "calendar-outline";
+                break;
+              default:
+                break;
             }
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "gray",
         })}
       >
+        <Tab.Screen name="User" component={AccountStackScreen} />
+        <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Login" component={LoginScreen} />
-        <Tab.Screen name="Account" component={AccountScreen} />
-        <Tab.Screen name="Calendar" component={CalendarScreen} />
-        <Tab.Screen name="ClubInfo" component={ClubInfoScreen} />
-        <Tab.Screen name="Locations" component={LocationsScreen} />
         <Tab.Screen name="Messaging" component={MessageScreen} />
-        <Tab.Screen name="Search" component={SearchScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Events" component={EventsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

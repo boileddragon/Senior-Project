@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Button, View, Text } from "react-native";
 
-function SearchScreen({ navigation }) {
+function AccountScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Search for some clubs!</Text>
+      <Text>Personal Account</Text>
       <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Home")}
+        title="Go to settings"
+        onPress={() => navigation.navigate("Settings")}
       />
     </View>
   );
 }
 
-export default SearchScreen;
+export default AccountScreen;
