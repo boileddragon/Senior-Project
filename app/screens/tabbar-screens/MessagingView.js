@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, View, Text } from "react-native";
 
-function MessagingScreen({ navigation }) {
+export default function MessagingScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Messaging</Text>
@@ -12,5 +12,3 @@ function MessagingScreen({ navigation }) {
     </View>
   );
 }
-
-export default MessagingScreen;

@@ -1,20 +1,105 @@
 import * as React from "react";
-import { Button, View, Text } from "react-native";
+import { Pressable, ScrollView, View, Text, StyleSheet } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-function EventsScreen({ navigation }) {
+import TodaysEvent from "../../components/TodaysEvent";
+import UpcomingEvent from "../../components/UpcomingEvent";
+
+export default function EventsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Events</Text>
-      <Button
-        title="Go to calendar"
-        onPress={() => navigation.navigate("Calendar")}
-      />
-      <Button
-        title="Go to map"
-        onPress={() => navigation.navigate("Map")}
-      />
+    <View style={styles.container}>
+      {/* Need to make sticky or something somehow - fix the buttons */}
+      <ScrollView style={styles.scrollContainer}>
+        {/* Events happening today from clubs the user follows */}
+        <Text style={styles.header}>Today - (Today's Date)</Text>
+        <TodaysEvent />
+        <TodaysEvent />
+
+        {/* Line separator between current and future event sections */}
+        <View style={styles.eventSeparatorContainer}>
+          <View style={styles.eventSeparator} />
+        </View>
+
+        {/* Events happening within the next 7 days from clubs the user follows */}
+        <Text style={styles.header}>Upcoming</Text>
+        <UpcomingEvent />
+        
+      </ScrollView>
+
+      <View style={styles.buttonContainer}>
+        {/* Navigator button to the calendar */}
+        <Pressable
+          style={styles.calButton}
+          onPress={() => navigation.navigate("Calendar")}
+        >
+          <Text style={styles.buttonText}>
+            Calendar <Ionicons name={"calendar-outline"} />
+          </Text>
+        </Pressable>
+
+        {/* Navigator button to the map */}
+        <Pressable
+          style={styles.mapButton}
+          onPress={() => navigation.navigate("Map")}
+        >
+          <Text style={styles.buttonText}>
+            Map <Ionicons name={"map-outline"} />
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
-export default EventsScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    marginBottom: 60,
+  },
+  header: {
+    marginTop: 10,
+    left: 10,
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+  eventSeparatorContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  eventSeparator: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "black",
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+  calButton: {
+    paddingVertical: 7,
+    paddingHorizontal: 11,
+    borderRadius: 4,
+    backgroundColor: "rgb(25, 45, 83)",
+    position: "absolute",
+    bottom: 10,
+    left: 75,
+  },
+  mapButton: {
+    paddingVertical: 7,
+    paddingHorizontal: 30,
+    borderRadius: 4,
+    backgroundColor: "rgb(25, 45, 83)",
+    position: "absolute",
+    bottom: 10,
+    right: 75,
+  },
+  buttonText: {
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
+  },
+});

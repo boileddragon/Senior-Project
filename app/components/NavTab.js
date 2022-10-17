@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import AccountStackScreen from "./stacks/AccountStack.js";
-import SearchStackScreen from "./stacks/SearchStack.js";
-import HomeScreen from "../screens/tabbar-screens/HomeView.js";
+import AccountStackScreen from "./stacks/AccountStack";
+import SearchStackScreen from "./stacks/SearchStack";
+import HomeScreen from "../screens/tabbar-screens/HomeView";
 import MessageScreen from "../screens/tabbar-screens/MessagingView";
 import EventsStackScreen from "./stacks/EventsStack";
 
@@ -32,7 +32,7 @@ function NavTab() {
             let iconName;
 
             switch (route.name) {
-              case "Home":
+              case "Welcome!":
                 iconName = focused ? "home" : "home-outline";
                 break;
               case "User":
@@ -51,18 +51,17 @@ function NavTab() {
                 break;
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="User" component={AccountStackScreen} />
+        <Tab.Screen name="Welcome!" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Messaging" component={MessageScreen} />
         <Tab.Screen name="Events" component={EventsStackScreen} />
+        <Tab.Screen name="Messaging" component={MessageScreen} />
+        <Tab.Screen name="User" component={AccountStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

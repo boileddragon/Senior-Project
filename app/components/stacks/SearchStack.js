@@ -5,7 +5,7 @@ import ClubInfoScreen from "../../screens/other-screens/ClubInfoView";
 
 const SearchStack = createNativeStackNavigator();
 
-function SearchStackScreen() {
+export default function SearchStackScreen() {
   return (
     <SearchStack.Navigator>
       <SearchStack.Screen name="Search For Clubs" component={SearchScreen} />
@@ -13,5 +13,3 @@ function SearchStackScreen() {
     </SearchStack.Navigator>
   );
 }
-
-export default SearchStackScreen;
