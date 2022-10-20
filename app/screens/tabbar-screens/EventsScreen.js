@@ -13,7 +13,6 @@ export default function EventsScreen({ navigation }) {
         {/* Events happening today from clubs the user follows */}
         <Text style={styles.header}>Today - (Today's Date)</Text>
         <TodaysEvent />
-        <TodaysEvent />
 
         {/* Line separator between current and future event sections */}
         <View style={styles.eventSeparatorContainer}>
@@ -23,10 +22,9 @@ export default function EventsScreen({ navigation }) {
         {/* Events happening within the next 7 days from clubs the user follows */}
         <Text style={styles.header}>Upcoming</Text>
         <UpcomingEvent />
-        
       </ScrollView>
 
-      <View style={styles.buttonContainer}>
+      <View>
         {/* Navigator button to the calendar */}
         <Pressable
           style={styles.calButton}
@@ -73,9 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 1,
     backgroundColor: "black",
-  },
-  buttonContainer: {
-    flex: 1,
   },
   calButton: {
     paddingVertical: 7,
