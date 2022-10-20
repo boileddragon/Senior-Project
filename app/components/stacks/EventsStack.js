@@ -1,8 +1,8 @@
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import EventsScreen from "../../screens/tabbar-screens/EventsView.js";
-import CalendarScreen from "../../screens/other-screens/CalendarView.js";
-import MapScreen from "../../screens/other-screens/MapView";
+import EventsScreen from "../../screens/tabbar-screens/EventsScreen.js";
+import CalendarScreen from "../../screens/other-screens/CalendarScreen.js";
+import MapScreen from "../../screens/other-screens/LocationScreen";
 
 
 const EventsStack = createNativeStackNavigator();

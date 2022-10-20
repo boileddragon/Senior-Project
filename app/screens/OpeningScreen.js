@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "./other-screens/LoginView.js";
+import LoginScreen from "./other-screens/LoginScreen.js";
 import { NavigationContainer } from "@react-navigation/native";
 
 const LoginStack = createNativeStackNavigator();
