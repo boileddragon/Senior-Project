@@ -5,25 +5,25 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import AccountStackScreen from "./stacks/AccountStack";
 import SearchStackScreen from "./stacks/SearchStack";
-import HomeScreen from "../screens/tabbar-screens/HomeView";
-import MessageScreen from "../screens/tabbar-screens/MessagingView";
+import HomeScreen from "../screens/tabbar-screens/HomeScreen";
+import MessageScreen from "../screens/tabbar-screens/MessagingScreen";
 import EventsStackScreen from "./stacks/EventsStack";
 
 const AppTheme = {
   dark: false,
   colors: {
-    primary: "rgb(242, 242, 242)",
-    background: "rgb(242, 242, 242)",
+    primary: "white",
+    background: "white",
     card: "rgb(25, 45, 83)",
-    text: "rgb(242, 242, 242)",
+    text: "white",
     border: "rgb(25, 45, 83)",
-    notification: "rgb(242, 242, 242)",
+    notification: "white",
   },
 };
 
 const Tab = createBottomTabNavigator();
 
-function NavTab() {
+export default function NavTab() {
   return (
     <NavigationContainer theme={AppTheme}>
       <Tab.Navigator
@@ -32,7 +32,7 @@ function NavTab() {
             let iconName;
 
             switch (route.name) {
-              case "Welcome!":
+              case "Home":
                 iconName = focused ? "home" : "home-outline";
                 break;
               case "User":
@@ -57,7 +57,7 @@ function NavTab() {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="Welcome!" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Events" component={EventsStackScreen} />
         <Tab.Screen name="Messaging" component={MessageScreen} />
@@ -66,5 +66,3 @@ function NavTab() {
     </NavigationContainer>
   );
 }
-
-export default NavTab;

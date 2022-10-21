@@ -31,6 +31,7 @@ export default function CalendarScreen() {
           title="Current Month"
           onPress={() => setCurrentDate(new Date().toISOString())}
           color="#00adf5"
+          style={styles.monthButton}
         />
       </View>
       <CalendarList
