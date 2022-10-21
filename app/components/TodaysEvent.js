@@ -10,17 +10,14 @@ export default function TodaysEvent() {
         <EventTitle>Event Title</EventTitle>
         <ClubName>Club Name</ClubName>
         <Details>Details</Details>
+        <Location>Location</Location>
         <PressableNavigation onPress={() => navigation.navigate("Calendar")}>
           <PressableText>Time, Date</PressableText>
-        </PressableNavigation>
-        <PressableNavigation onPress={() => navigation.navigate("Map")}>
-          <PressableText>Location</PressableText>
         </PressableNavigation>
       </Event>
     </Container>
   );
 }
-
 
 const Container = styled.View`
   align-items: center;
@@ -48,6 +45,11 @@ const PressableText = styled.Text`
   font-size: 14px;
   color: #00adf5;
 `;
+
+const Location = styled.Text`
+  font-size: 14px;
+  left: 15px;
+`
 
 const Event = styled.View`
   border: 1px solid #ccc;

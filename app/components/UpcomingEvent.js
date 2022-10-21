@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import styled from "styled-components/native";
 
-export default function UpcomingEvent() {
+export default function UpdateEvent() {
   const navigation = useNavigation();
   return (
     <Container>
@@ -10,11 +10,9 @@ export default function UpcomingEvent() {
         <EventTitle>Event Title</EventTitle>
         <ClubName>Club Name</ClubName>
         <Details>Details</Details>
+        <Location>Location</Location>
         <PressableNavigation onPress={() => navigation.navigate("Calendar")}>
           <PressableText>Time, Date</PressableText>
-        </PressableNavigation>
-        <PressableNavigation onPress={() => navigation.navigate("Map")}>
-          <PressableText>Location</PressableText>
         </PressableNavigation>
       </Event>
     </Container>
@@ -47,6 +45,11 @@ const PressableText = styled.Text`
   font-size: 14px;
   color: #00adf5;
 `;
+
+const Location = styled.Text`
+  font-size: 14px;
+  left: 15px;
+`
 
 const Event = styled.View`
   border: 1px solid #ccc;
