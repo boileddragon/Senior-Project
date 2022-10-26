@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from "react";
 import { Button, View, StyleSheet } from "react-native";
 import { CalendarList } from "react-native-calendars";
 
-const RANGE = 12;
+const RANGE = 16;
 const initialDate = "2022-10-20";
 
 export default function CalendarScreen() {
