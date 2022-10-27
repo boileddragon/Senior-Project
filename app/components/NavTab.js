@@ -5,8 +5,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import AccountStackScreen from "../stacks/AccountStack";
 import SearchStackScreen from "../stacks/SearchStack";
-import HomeScreen from "../screens/tabbar-screens/HomeScreen";
-import MessageScreen from "../screens/tabbar-screens/MessagingScreen";
+import HomeStackScreen from "../stacks/HomeStack";
+import MessagingStackScreen from "../stacks/MessagingStack";
 import EventsStackScreen from "../stacks/EventsStack";
 
 const AppTheme = {
@@ -32,19 +32,19 @@ export default function NavTab() {
             let iconName;
 
             switch (route.name) {
-              case "Home":
+              case "HomeStack":
                 iconName = focused ? "home" : "home-outline";
                 break;
-              case "User":
+              case "UserStack":
                 iconName = focused ? "person" : "person-outline";
                 break;
-              case "Search":
+              case "SearchStack":
                 iconName = focused ? "search" : "search-outline";
                 break;
-              case "Messaging":
+              case "MessagingStack":
                 iconName = focused ? "chatbubbles" : "chatbubbles-outline";
                 break;
-              case "Events":
+              case "EventsStack":
                 iconName = focused ? "calendar" : "calendar-outline";
                 break;
               default:
@@ -55,13 +55,16 @@ export default function NavTab() {
           },
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "gray",
+          tabBarShowLabel: false,
+          headerShown: false,
         })}
+        initialRouteName="HomeStack"
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Search" component={SearchStackScreen} />
-        <Tab.Screen name="Events" component={EventsStackScreen} />
-        <Tab.Screen name="Messaging" component={MessageScreen} />
-        <Tab.Screen name="User" component={AccountStackScreen} />
+        <Tab.Screen name="EventsStack" component={EventsStackScreen} />
+        <Tab.Screen name="SearchStack" component={SearchStackScreen} />
+        <Tab.Screen name="HomeStack" component={HomeStackScreen} />
+        <Tab.Screen name="MessagingStack" component={MessagingStackScreen} />
+        <Tab.Screen name="UserStack" component={AccountStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
