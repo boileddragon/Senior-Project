@@ -6,7 +6,7 @@ const RANGE = 12;
 
 export default function CalendarScreen() {
   const [currentdate, setCurrentDate] = useState(new Date().toISOString());
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(currentdate);
 
   const marked = useMemo(() => {
     return {
