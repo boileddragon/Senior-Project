@@ -34,16 +34,6 @@ export default function EventsScreen({ navigation }) {
             Calendar <Ionicons name={"calendar-outline"} />
           </Text>
         </Pressable>
-
-        {/* Navigator button to the map */}
-        <Pressable
-          style={styles.mapButton}
-          onPress={() => navigation.navigate("Map")}
-        >
-          <Text style={styles.buttonText}>
-            Map <Ionicons name={"map-outline"} />
-          </Text>
-        </Pressable>
       </View>
     </View>
   );

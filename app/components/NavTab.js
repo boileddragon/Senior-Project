@@ -3,11 +3,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import AccountStackScreen from "./stacks/AccountStack";
-import SearchStackScreen from "./stacks/SearchStack";
+import AccountStackScreen from "../stacks/AccountStack";
+import SearchStackScreen from "../stacks/SearchStack";
 import HomeScreen from "../screens/tabbar-screens/HomeScreen";
 import MessageScreen from "../screens/tabbar-screens/MessagingScreen";
-import EventsStackScreen from "./stacks/EventsStack";
+import EventsStackScreen from "../stacks/EventsStack";
 
 const AppTheme = {
   dark: false,

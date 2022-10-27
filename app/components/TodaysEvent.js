@@ -1,21 +1,37 @@
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import styled from "styled-components/native";
+import { View, Text, Pressable } from "react-native";
 
 export default function TodaysEvent() {
   const navigation = useNavigation();
   return (
+    <View>
+      <Text>Event Title</Text>
+      <Text>Club name</Text>
+      <Text>Details</Text>
+      <Text>Location</Text>
+      <Text>Time</Text>
+      <Pressable onPress={() => navigation.navigate("Calendar")}>
+        <Text>Date</Text>
+      </Pressable>
+    </View>
+  );
+}
+{
+  /* 
     <Container>
       <Event>
-        <EventTitle>Event Title</EventTitle>
-        <ClubName>Club Name</ClubName>
-        <Details>Details</Details>
-        <Location>Location</Location>
+        <EventTitle value="title" >Event Title</EventTitle>
+        <ClubName value="clubName" >Club Name</ClubName>
+        <Details value="details" >Details</Details>
+        <Location value="location" >Location</Location>
+        <Time value="time" >Time</Time>
         <PressableNavigation onPress={() => navigation.navigate("Calendar")}>
-          <PressableText>Time, Date</PressableText>
+          <PressableText value="date" >Date</PressableText>
         </PressableNavigation>
       </Event>
     </Container>
+    
   );
 }
 
@@ -37,6 +53,16 @@ const Details = styled.Text`
   font-size: 14px;
 `;
 
+const Location = styled.Text`
+  font-size: 14px;
+  left: 15px;
+`;
+
+const Time = styled.Text`
+  font-size: 14px;
+  left: 15px;
+`;
+
 const PressableNavigation = styled.Pressable`
   left: 15px;
 `;
@@ -45,11 +71,6 @@ const PressableText = styled.Text`
   font-size: 14px;
   color: #00adf5;
 `;
-
-const Location = styled.Text`
-  font-size: 14px;
-  left: 15px;
-`
 
 const Event = styled.View`
   border: 1px solid #ccc;
@@ -60,3 +81,5 @@ const Event = styled.View`
   width: 90%;
   padding: 10px;
 `;
+*/
+}

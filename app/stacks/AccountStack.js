@@ -1,8 +1,8 @@
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AccountScreen from "../../screens/tabbar-screens/AccountScreen";
-import SettingsScreen from "../../screens/other-screens/SettingsScreen.js";
-import PhotoUploadScreen from "../../screens/other-screens/PhotoUploadScreen.js";
+import AccountScreen from "../screens/tabbar-screens/AccountScreen";
+import SettingsScreen from "../screens/other-screens/SettingsScreen.js";
+import PhotoUploadScreen from "../screens/other-screens/PhotoUploadScreen.js"; 
 
 const AccountStack = createNativeStackNavigator();
 

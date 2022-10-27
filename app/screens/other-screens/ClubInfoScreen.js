@@ -4,10 +4,6 @@ import { Image, View, Text, StyleSheet } from "react-native";
 export default function ClubInfoScreen() {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require("../../../assets/test-pic.jpg")}
-      />
       <Text>Club Info</Text>
     </View>
   );

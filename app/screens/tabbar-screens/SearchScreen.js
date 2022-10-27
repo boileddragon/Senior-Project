@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { SearchBar } from "@rneui/themed";
 
-const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`;
-
 // Requiring the lodash library for filter
-const _ = require("lodash");
+import _ from 'lodash';
+
+const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`;
 
 export default function SearchScreen() {
   const [isLoading, setIsLoading] = useState(false);
