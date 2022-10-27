@@ -7,7 +7,11 @@ const SearchStack = createNativeStackNavigator();
 
 export default function SearchStackScreen() {
   return (
-    <SearchStack.Navigator>
+    <SearchStack.Navigator
+    screenOptions={{
+      headerShown: true,
+    }}
+    >
       <SearchStack.Screen name="Search For Clubs" component={SearchScreen} />
       <SearchStack.Screen name="Club Info" component={ClubInfoScreen} />
     </SearchStack.Navigator>
