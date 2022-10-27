@@ -69,16 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(25, 45, 83)",
     position: "absolute",
     bottom: 10,
-    left: 75,
-  },
-  mapButton: {
-    paddingVertical: 7,
-    paddingHorizontal: 30,
-    borderRadius: 4,
-    backgroundColor: "rgb(25, 45, 83)",
-    position: "absolute",
-    bottom: 10,
-    right: 75,
+    right: 10,
   },
   buttonText: {
     fontSize: 14,

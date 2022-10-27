@@ -5,7 +5,7 @@ export class Event {
      * @param {string} clubName Name of club that is hosting the event
      * @param {string} details Any info about the event
      * @param {string} location Location of the event
-     * @param {date} date Date and time of event
+     * @param {string} date Date and time of event
      */
     constructor(title, clubName, details, location, date) {
         this.title = title,
