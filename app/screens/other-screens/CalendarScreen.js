@@ -3,11 +3,10 @@ import { Button, View, StyleSheet } from "react-native";
 import { CalendarList } from "react-native-calendars";
 
 const RANGE = 12;
-const initialDate = "2022-10-20";
 
 export default function CalendarScreen() {
   const [currentdate, setCurrentDate] = useState(new Date().toISOString());
-  const [selected, setSelected] = useState(initialDate);
+  const [selected, setSelected] = useState(currentdate);
 
   const marked = useMemo(() => {
     return {
@@ -55,7 +54,6 @@ export default function CalendarScreen() {
           textMonthFontSize: 18,
           textDayHeaderFontSize: 18,
         }}
-        enableSwipeMonths={true}
       />
     </View>
   );
