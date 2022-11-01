@@ -1,5 +1,6 @@
 import { db } from "../firebaseConfig";
 import { Event } from "../models/event";
+import { Timestamp } from "firebase/firestore";
 
 import {
   collection,
@@ -48,7 +49,7 @@ const eventConverter = {
       clubName: event.clubName,
       details: event.details,
       location: event.location,
-      date: event.date,
+      date: Timestamp.fromDate(event.date),
     };
   },
   fromFirestore: (snapshot, options) => {
@@ -58,7 +59,7 @@ const eventConverter = {
       data.clubName,
       data.details,
       data.location,
-      data.date
+      Date(data.date)
     );
   },
 };
