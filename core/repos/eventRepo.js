@@ -1,6 +1,6 @@
 import { db } from "../firebaseConfig";
 import { Event } from "../models/event";
-import { Timestamp } from "firebase/firestore";
+import { Timestamp, where } from "firebase/firestore";
 
 import {
   collection,
@@ -10,6 +10,7 @@ import {
   getDocs,
   setDoc,
   addDoc,
+  query,
 } from "firebase/firestore";
 
 export class EventRepo {
@@ -18,7 +19,7 @@ export class EventRepo {
 
   /**
    * Return all events a
-   * @returns 
+   * @returns
    */
   static async all() {
     let res = [];
@@ -32,18 +33,49 @@ export class EventRepo {
     return res;
   }
 
+
+  // add a general byDate function?
+  static async today() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    const today_timestamp = Timestamp.fromDate(new Date());
+    const tomorrow_timestamp = Timestamp.fromDate(tomorrow);
+
+    console.log(today_timestamp.toDate().toLocaleString());
+    console.log(tomorrow_timestamp.toDate().toLocaleString());
+
+    const q = query(
+      collection(db, EventRepo.collection),
+      where("date", ">", today_timestamp),
+      where("date", "<", tomorrow_timestamp)
+    );
+    const docs = await getDocs(q.withConverter(eventConverter));
+    let res = [];
+    docs.forEach((doc) => {
+      res.push(doc.data());
+    });
+    //console.log(res);
+    return res;
+  }
+
   /**
    * Add event as new document
    * @param {Event} event
-   * @returns 
+   * @returns
    */
-   static async add(event) {
-    return await addDoc(collection(db, EventRepo.collection).withConverter(eventConverter), event);
+  static async add(event) {
+    return await addDoc(
+      collection(db, EventRepo.collection).withConverter(eventConverter),
+      event
+    );
   }
 }
 
 const eventConverter = {
   toFirestore: (event) => {
+    console.log(event);
     return {
       title: event.title,
       clubName: event.clubName,
@@ -54,12 +86,13 @@ const eventConverter = {
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
+    console.log(data.date.toDate());
     return new Event(
       data.title,
       data.clubName,
       data.details,
       data.location,
-      Date(data.date)
+      data.date.toDate().toLocaleString()
     );
   },
 };
