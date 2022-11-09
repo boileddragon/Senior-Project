@@ -10,7 +10,7 @@ export default function TodaysEvent() {
   const [event, setEvent] = useState([]);
 
   useEffect(() => {
-    EventRepo.all().then((events) => setEvent(events));
+    EventRepo.Upcoming().then((events) => setEvent(events));
   }, []);
 
   if (event.length === 0) return null;
