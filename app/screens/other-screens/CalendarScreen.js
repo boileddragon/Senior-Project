@@ -1,13 +1,14 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Button, View, StyleSheet } from "react-native";
-import { CalendarList } from "react-native-calendars";
 
+/* Number of months the calendar cam display (backward and forward) */
 const RANGE = 12;
 
 export default function CalendarScreen() {
   const [currentdate, setCurrentDate] = useState(new Date().toISOString());
   const [selected, setSelected] = useState(currentdate);
 
+  /* Style marked dates in calendar (i.e. days that had events) */
   const marked = useMemo(() => {
     return {
       [selected]: {
@@ -19,6 +20,7 @@ export default function CalendarScreen() {
     };
   }, [selected]);
 
+  /* Change selected day when pressed */
   const onDayPress = useCallback((day) => {
     setSelected(day.dateString);
   }, []);
@@ -26,6 +28,7 @@ export default function CalendarScreen() {
   return (
     <View>
       <View style={styles.buttonContainer}>
+        {/* Button to reset calendar to current day when scrolled to another month */}
         <Button
           title="Current Month"
           onPress={() => setCurrentDate(new Date().toISOString())}
@@ -33,6 +36,8 @@ export default function CalendarScreen() {
           style={styles.monthButton}
         />
       </View>
+      {/* This is commented out because this library introduced breaking changes to the code, so "react-native-calendars" is no longer installed in the application. However, it did work...mostly.
+      
       <CalendarList
         current={currentdate}
         pastScrollRange={RANGE}
@@ -54,7 +59,7 @@ export default function CalendarScreen() {
           textMonthFontSize: 18,
           textDayHeaderFontSize: 18,
         }}
-      />
+      />*/}
     </View>
   );
 }

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-import { Event } from "../../core/models/event";
 import { EventRepo } from "../../core/repos/eventRepo";
 
 export default function TodaysEvent() {
   const navigation = useNavigation();
   const [event, setEvent] = useState([]);
 
+  /* Only display the events that are upcoming  */
   useEffect(() => {
     EventRepo.Upcoming().then((events) => setEvent(events));
   }, []);
@@ -17,17 +16,27 @@ export default function TodaysEvent() {
 
   return (
     <View style={styles.container}>
-      {event.map((e) => (
-        <>
+      {/* Dynamically generate events based on how many there are in the database */}
+      {event.map((e, index) => (
+        <Fragment key={index}>
           <View style={[styles.card, styles.shadowProp]}>
-            <Text style={styles.eventTitle}>{e.clubName} - {e.title}</Text>
+            {/* Club name and event title */}
+            <Text style={styles.eventTitle}>
+              {e.clubName} - {e.title}
+            </Text>
+
+            {/* Details of the event */}
             <Text style={styles.otherInfo}>{e.details}</Text>
+
+            {/* Location of the event */}
             <Text style={styles.otherInfo}>{e.location}</Text>
+
+            {/* Date and time of the event. Can be clicked to navigate to the calendar. */}
             <Pressable onPress={() => navigation.navigate("Calendar")}>
               <Text style={styles.pressableLocation}>{e.date}</Text>
             </Pressable>
           </View>
-        </>
+        </Fragment>
       ))}
     </View>
   );

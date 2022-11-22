@@ -1,12 +1,9 @@
 import * as React from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
-export default function SettingsScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Button title="Upload Club Photo" onPress={() => navigation.navigate("Photo Upload")} />
-    </View>
-  );
+/* Base layout */
+export default function SettingsScreen() {
+  return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
@@ -14,4 +11,4 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-})
+});

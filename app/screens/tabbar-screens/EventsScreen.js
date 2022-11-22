@@ -8,7 +8,6 @@ import UpcomingEvent from "../../components/UpcomingEvent";
 export default function EventsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      {/* Need to make sticky or something somehow - fix the buttons */}
       <ScrollView style={styles.scrollContainer}>
         {/* Events happening today from clubs the user follows */}
         <Text style={styles.header}>Today - (Today's Date)</Text>
@@ -19,13 +18,16 @@ export default function EventsScreen({ navigation }) {
           <View style={styles.eventSeparator} />
         </View>
 
-        {/* Events happening within the next 7 days from clubs the user follows */}
+        {/* Events happening in the future from clubs the user follows */}
         <Text style={styles.header}>Upcoming</Text>
         <UpcomingEvent />
       </ScrollView>
 
       <View>
-        {/* Navigator button to the calendar */}
+        {/* 
+          Navigator button to the calendar.
+          It is a pressable in order to style it to fit with the rest of the app. 
+        */}
         <Pressable
           style={styles.calButton}
           onPress={() => navigation.navigate("Calendar")}

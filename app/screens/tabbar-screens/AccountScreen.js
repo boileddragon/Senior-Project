@@ -2,10 +2,16 @@ import * as React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+/* Base layout */
 export default function AccountScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Personal Account</Text>
+
+      {/* 
+      Navigator button to the settings page.
+      It is a pressable in order to style it to fit with the rest of the app. 
+      */}
       <Pressable
         style={styles.settingsButton}
         onPress={() => navigation.navigate("Settings")}

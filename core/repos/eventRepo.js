@@ -11,7 +11,7 @@ import {
   setDoc,
   addDoc,
   query,
-  orderBy
+  orderBy,
 } from "firebase/firestore";
 
 export class EventRepo {
@@ -19,7 +19,7 @@ export class EventRepo {
   static collection = "Events";
 
   /**
-   * Return all events a
+   * Return all events ]
    * @returns
    */
   static async All() {
@@ -30,24 +30,19 @@ export class EventRepo {
     docs.forEach((doc) => {
       res.push(doc.data());
     });
-    //console.log(res);
     return res;
   }
-
 
   // add a general byDate function?
   static async Today() {
     const today = new Date();
     const tomorrow = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0,0,0,0);
+    tomorrow.setHours(0, 0, 0, 0);
 
     const today_timestamp = Timestamp.fromDate(new Date());
     const tomorrow_timestamp = Timestamp.fromDate(tomorrow);
-
-    console.log(today_timestamp.toDate().toLocaleString());
-    console.log(tomorrow_timestamp.toDate().toLocaleString());
 
     const q = query(
       collection(db, EventRepo.collection),
@@ -59,32 +54,27 @@ export class EventRepo {
     docs.forEach((doc) => {
       res.push(doc.data());
     });
-    //console.log(res);
     return res;
   }
-
-  // Order by date and time
-  
 
   static async Upcoming() {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0,0,0,0);
+    tomorrow.setHours(0, 0, 0, 0);
 
     const tomorrow_timestamp = Timestamp.fromDate(tomorrow);
 
-    console.log(tomorrow_timestamp.toDate().toLocaleString());
-
+    /* Order by date and time */
     const q = query(
       collection(db, EventRepo.collection),
-      where("date", ">", tomorrow_timestamp), orderBy("date")
+      where("date", ">", tomorrow_timestamp),
+      orderBy("date")
     );
     const docs = await getDocs(q.withConverter(eventConverter));
     let res = [];
     docs.forEach((doc) => {
       res.push(doc.data());
     });
-    //console.log(res);
     return res;
   }
 
@@ -103,7 +93,6 @@ export class EventRepo {
 
 const eventConverter = {
   toFirestore: (event) => {
-    console.log(event);
     return {
       title: event.title,
       clubName: event.clubName,
@@ -114,7 +103,6 @@ const eventConverter = {
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
-    console.log(data.date.toDate());
     return new Event(
       data.title,
       data.clubName,

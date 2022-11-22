@@ -31,6 +31,7 @@ export default function NavTab() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
+            /* Change the icons on the navigation bar when the route is selected (filled vs outline) */
             switch (route.name) {
               case "HomeStack":
                 iconName = focused ? "home" : "home-outline";

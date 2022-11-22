@@ -8,19 +8,21 @@ import {
 } from "react-native";
 import { SearchBar } from "@rneui/themed";
 
-// Requiring the lodash library for filter
-import _ from 'lodash';
+/* Requiring the lodash library for filter */
+import _ from "lodash";
 
-const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`;
+/* Sample data (random names) to pull from until can pull from backend */
+const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=70`;
 
 export default function SearchScreen() {
+  /* Hooks for filtering the data set */
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-
   const [query, setQuery] = useState("");
   const [fullData, setFullData] = useState([]);
 
+  /* Format the returned data from the api */
   const handleSearch = (text) => {
     const formattedQuery = text.toLowerCase();
     const filteredData = _.filter(fullData, (user) => {
@@ -30,6 +32,7 @@ export default function SearchScreen() {
     setQuery(text);
   };
 
+  /* Search by email, first, or last name */
   const contains = ({ name, email }, query) => {
     const { first, last } = name;
 
@@ -44,6 +47,7 @@ export default function SearchScreen() {
     return false;
   };
 
+  /* Get data from endpoint */
   useEffect(() => {
     setIsLoading(true);
 
@@ -60,6 +64,7 @@ export default function SearchScreen() {
       });
   }, []);
 
+  /* Show loading symbol if page is loading still */
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -68,6 +73,7 @@ export default function SearchScreen() {
     );
   }
 
+  /* Show error if data cannot be fetched */
   if (error) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -86,8 +92,13 @@ export default function SearchScreen() {
         value={query}
         lightTheme={true}
       />
+
+      {/* 
+      Scrollable list with all of the data to be searched from. 
+      It will shrink as user types in search bar. 
+      */}
       <FlatList
-      style={styles.flatlist}
+        style={styles.flatlist}
         data={data}
         keyExtractor={(item, index) => index}
         renderItem={({ item }) => (
